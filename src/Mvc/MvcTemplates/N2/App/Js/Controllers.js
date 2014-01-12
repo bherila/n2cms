@@ -1,12 +1,11 @@
-﻿(function(app) {
-	app.value('$strapConfig', {
+﻿(function(n2Module){
+	n2Module.value('$strapConfig', {
 		datepicker: {
 			language: 'en',
 			format: 'M d, yyyy'
 		}
 	});
-})(angular.module('n2', ['n2.directives', 'n2.services', 'n2.localization', 'ui', '$strap.directives']));
-
+})(angular.module('n2', ['n2.directives', 'n2.services', 'n2.localization', 'ui', '$strap.directives']))
 
 function findNodeRecursive(node, selectedPath) {
 	if (!node)
@@ -49,7 +48,7 @@ function Uri(uri) {
 	};
 };
 
-function ManagementCtrl($scope, $rootScope, $window, $timeout, $interpolate, $location, Context, Content, Profile, Security, FrameContext, Translate, Eventually) {
+function ManagementCtrl($scope, $window, $timeout, $interpolate, Context, Content, Profile, Security, FrameContext, Translate, Eventually) {
 	$scope.Content = Content;
 	$scope.Security = Security;
 
@@ -649,6 +648,9 @@ function PageScheduleCtrl($scope, Content) {
 }
 
 function FrameActionCtrl($scope, $rootScope, $timeout, FrameManipulator) {
+	$scope.execute = function (action) {
+		//FrameManipulator.click(action.Current.Selector);
+	}
 	$scope.$parent.manipulator = FrameManipulator;
 	$rootScope.$on("contextchanged", function (scope, e) {
 		$scope.$parent.action = null;
