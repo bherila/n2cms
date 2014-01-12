@@ -4,33 +4,33 @@
 		return (function () {
 			// clears the previous action if a new event is triggered before the timeout
 			var timer = 0;
-			var timers = {}
-			return function (callback, ms, onWorkCancelled, parallelWorkGroup) {
+			var timers = {};
+			return function(callback, ms, onWorkCancelled, parallelWorkGroup) {
 				if (!!parallelWorkGroup) {
 					if (timers[parallelWorkGroup]) {
 						$timeout.cancel(timers[parallelWorkGroup]);
 						onWorkCancelled();
 					}
-					timers[parallelWorkGroup] = $timeout(function () {
+					timers[parallelWorkGroup] = $timeout(function() {
 						timers[parallelWorkGroup] = null;
 						callback();
 					}, ms);
 				} else {
 					timer && onWorkCancelled && onWorkCancelled();
 					timer && $timeout.cancel(timer);
-					timer = $timeout(function () {
+					timer = $timeout(function() {
 						timer = 0;
 						callback();
 					}, ms);
 				}
-			}
+			};
 		})();
 	});
 
 	window.frameHost = {
-		notify: function () {
+		notify: function() {
 		}
-	}
+	};
 	module.factory('FrameManipulator', function () {
 		var frameManipulator = {
 			host: window.frameHost,
@@ -102,9 +102,9 @@
 		res.paths = {
 			SelectedQueryKey: "selected",
 			ItemQueryKey: "item"
-		}
+		};
 
-		res.applySelection = function (settings, currentItem) {
+		res.applySelection = function(settings, currentItem) {
 			var path = currentItem && currentItem.Path;
 			var id = currentItem && currentItem.ID;
 
@@ -121,7 +121,7 @@
 				return angular.extend(selection, settings);
 			}
 			return settings;
-		}
+		};
 
 		res.loadChildren = function (node, callback) {
 		    if (!node)
@@ -225,9 +225,9 @@
 	});
 
 	module.factory('ContextMenuFactory', function () {
-		return function (scope) {
+		return function(scope) {
 			var contextMenu = this;
-			contextMenu.show = function (node) {
+			contextMenu.show = function(node) {
 				scope.select(node);
 				scope.ContextMenu.node = node;
 				scope.ContextMenu.options = [];
@@ -237,22 +237,22 @@
 					scope.ContextMenu.options.push(cm.Current);
 				}
 			};
-			contextMenu.hide = function () {
+			contextMenu.hide = function() {
 				delete scope.ContextMenu.node;
 				delete scope.ContextMenu.options;
 				delete scope.ContextMenu.memory;
 				delete scope.ContextMenu.action;
 			};
-			contextMenu.cut = function (node) {
+			contextMenu.cut = function(node) {
 				contextMenu.memory = node.Current;
 				contextMenu.action = "cut";
-				
+
 			};
-			contextMenu.copy = function (node) {
+			contextMenu.copy = function(node) {
 				contextMenu.memory = node.Current;
 				contextMenu.action = "copy";
 			};
-		}
+		};
 	});
 
 	module.factory('SortHelperFactory', function (Content, Notify) {
