@@ -1,6 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="N2.Management.Default" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" %>
 <%@ Register TagPrefix="edit" Namespace="N2.Edit.Web.UI.Controls" Assembly="N2.Management" %>
+<script runat="server">
+	protected override void OnInit(EventArgs e)
+	{
+		if (!String.IsNullOrEmpty(Request["selected"]))
+			Response.Redirect("?#" + Request["selected"]);
+		base.OnLoad(e);
+	}
+</script>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
