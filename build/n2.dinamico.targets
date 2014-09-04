@@ -8,6 +8,9 @@
 		<Dinamico-DeployFolder>$(DeployFolder)\$(DeployPrefix)Dinamico_Mvc</Dinamico-DeployFolder>
 		<Dinamico-DeployFolder-Path>$(Dinamico-DeployFolder)\N2CMS</Dinamico-DeployFolder-Path>
 		<Dinamico-NugetFolder>$(DeployFolder)\$(DeployPrefix)Dinamico_Nuget</Dinamico-NugetFolder>
+		<Dinamico-Resources-DeployFolder>$(DeployFolder)\$(DeployPrefix)Dinamico.Resources_Mvc</Dinamico-Resources-DeployFolder>
+		<Dinamico-Resources-DeployFolder-Path>$(Dinamico-DeployFolder)\N2CMS</Dinamico-Resources-DeployFolder-Path>
+		<Dinamico-Resources-NugetFolder>$(DeployFolder)\$(DeployPrefix)Dinamico.Resources_Nuget</Dinamico-Resources-NugetFolder>
 		<Bundle-Dinamico-NugetFolder>$(DeployFolder)\$(DeployPrefix)BundleDinamico_Nuget</Bundle-Dinamico-NugetFolder>
 	</PropertyGroup>
 
@@ -46,7 +49,18 @@
 												$(Dinamico-SourceFolder)\App_Data\SearchIndex\**\*;
 												$(Dinamico-SourceFolder)\App_Data\Temp\**\*;
 												$(Dinamico-SourceFolder)\N2\**\*;
-												$(Dinamico-SourceFolder)\N2.Management.*" />
+												$(Dinamico-SourceFolder)\N2.Management.*
+												$(Dinamico-SourceFolder)\favicon.ico;
+												$(Dinamico-SourceFolder)\apple-touch-icon.png;
+												$(Dinamico-SourceFolder)\upload\images\*.jpg;" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="Dinamico-Resources-CreateItemGroups">
+		<ItemGroup>
+			<dinamicoResourceFiles Include="$(Dinamico-SourceFolder)\favicon.ico;
+                                    $(Dinamico-SourceFolder)\apple-touch-icon.png;
+                                    $(Dinamico-SourceFolder)\upload\images\*.jpg;" />
 		</ItemGroup>
 	</Target>
 
