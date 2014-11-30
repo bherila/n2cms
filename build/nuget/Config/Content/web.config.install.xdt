@@ -2,12 +2,11 @@
   
   <n2 xmlns="http://n2cms.com/schemas/configuration/v3" xdt:Transform="InsertIfMissing">
     <!--
-			When installing a database from scratch you'll need to insert some required pages. 
-			This can be done by the web based installer located at http://yoursite/n2/installation/ 
-			-->
-    <host rootID="1" startPageID="2" multipleSites="true"
-          xdt:Transform="SetAttributes(rootID,startPageID,multipleSites)"
-          xdt:Locator="Condition([not(@configSource or @rootID)])" />
+		When installing a database from scratch you'll need to insert some required pages. 
+		You'll also need to add the <host> section so N2CMS knows how to find your StartPage, for example: 
+			<host rootID="1" startPageID="2" multipleSites="true" />
+		This can all be done by the web based installer located at http://yoursite/n2/installation/
+	-->
     <engine>
       <errors action="Email" mailTo="" mailFrom="noreply@yourdomain.com" />
       <globalization enabled="true"/>
